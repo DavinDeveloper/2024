@@ -1,0 +1,49 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} !^www.
+# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+ErrorDocument 404 /404.php
+
+RewriteEngine on
+RewriteRule ^pas/(.+)/(.+)$ ./siswa/pas.php?1=$1&2=$2 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^pts/(.+)/(.+)$ ./siswa/pts.php?1=$1&2=$2 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^leger/(.+)/(.+)$ ./admin/leger.php?1=$1&2=$2 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^kenaikan/(.+)/(.+)$ ./siswa/naik.php?1=$1&2=$2 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^npts/([a-zA-Z0-9-._]+)$/?$ ./guru/pts.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^npas/([a-zA-Z0-9-._]+)$/?$ ./guru/pas.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^cpts/([a-zA-Z0-9-._]+)$/?$ ./guru/cpts.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^cpas/([a-zA-Z0-9-._]+)$/?$ ./guru/cpas.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^rapor/([\w\s.-]+)$ ./guru/kelas.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^ptsc/([a-zA-Z0-9-._]+)$/?$ ./admin/rapor/pts.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^pasc/([a-zA-Z0-9-._]+)$/?$ ./admin/rapor/pas.php?1=$1 [QSA,L]

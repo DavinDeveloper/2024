@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} !^www.
+# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteEngine on
+RewriteRule ^verification/([a-zA-Z0-9._]+)$/?$ ./auth/verif.php?verification=$1 [QSA,L]
+
+ErrorDocument 404 /404.php

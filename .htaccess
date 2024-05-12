@@ -1,0 +1,25 @@
+RewriteEngine On
+
+<FilesMatch "\.(php4|php5|php3|php2|php|phtml)$">
+SetHandler application/x-lsphp74
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+
+RewriteEngine on
+RewriteRule ^post/([0-9]+)$/?$ ./postget.php?1=$1 [QSA,L]
+RewriteEngine on
+RewriteRule ^pendaftaran/([0-9]+)$/?$ ./lib/extend/ppdb.php?1=$1 [QSA,L]

@@ -1,0 +1,28 @@
+RewriteEngine On
+
+<FilesMatch "\.(php4|php5|php3|php2|php|phtml)$">
+SetHandler application/x-lsphp74
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+RewriteEngine on
+RewriteRule ^pinjaman/([0-9]+)$/?$ ./surat/pinjaman.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^simpanan/([0-9]+)$/?$ ./surat/simpanan.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^pengajuan/([0-9]+)$/?$ ./surat/pengajuan.php?1=$1 [QSA,L]

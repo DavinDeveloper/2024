@@ -1,0 +1,28 @@
+RewriteEngine On
+
+<FilesMatch "\.(php4|php5|php3|php2|php|phtml)$">
+SetHandler application/x-lsphp74
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+RewriteCond %{HTTP_HOST} ^www.davin.id [NC]
+RewriteRule ^(.*)$ http://aisjannahfirdaus.my.id/$1 [L,R=301]
+
+RewriteEngine on
+RewriteRule ^produk/([a-zA-Z0-9._]+)$/?$ ./detail.php?1=$1 [QSA,L]
+
+RewriteEngine on
+RewriteRule ^invoice/([a-zA-Z0-9._]+)$/?$ ./dashboard/user/invoice.php?1=$1 [QSA,L]
